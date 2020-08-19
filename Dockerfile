@@ -1,6 +1,22 @@
+FROM golang:latest as auth-server-builder
+
+WORKDIR /app
+
+ENV GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64
+
+COPY auth-server/go.mod .
+COPY auth-server/go.sum .
+RUN go mod download
+COPY auth-server/. .
+RUN go build -o app.bin
+
+## NGINX stage
 FROM buildpack-deps:stretch
 
-LABEL maintainer="Sebastian Ramirez <tiangolo@gmail.com>"
+LABEL maintainer="Andre Soares <andregsilv@gmail.com>"
 
 # Versions of Nginx and nginx-rtmp-module to use
 ENV NGINX_VERSION nginx-1.19.2
@@ -14,6 +30,7 @@ RUN apt-get update && \
         libssl-dev \
         stunnel4 \
         gettext-base \
+        apache2-utils \
         && \
     rm -rf /var/lib/apt/lists/*
 
@@ -63,5 +80,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY stunnel.conf /etc/stunnel/stunnel.conf
 
 COPY scripts/ /scripts/
+COPY --from=auth-server-builder /app/app.bin /auth-server/auth-server.bin
+
+# ENV GIN_MODE=release
 
 CMD ["bash", "/scripts/init.sh"]
