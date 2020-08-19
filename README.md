@@ -10,7 +10,7 @@ docker run -d --name myserver \
   --env YOUTUBE_KEY=<Put the Youtube Key here> \
   --env FACEBOOK_KEY=<Put the Facebook Key here> \
   --env STREAMING_KEY=<Put the streaming key here> \
-  --port 1935:1935 \
+  --p 1935:1935 \
   mniak/multistreamer
 ```
 
