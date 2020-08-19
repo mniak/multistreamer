@@ -1,11 +1,14 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"log"
+	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
-	r := gin.Default()
-	r.POST("/on_publish", onpublish)
-	r.Run()
+	router := httprouter.New()
+	router.POST("/on_publish", onpublish)
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
