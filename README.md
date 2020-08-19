@@ -8,22 +8,17 @@ Usage
 docker run -d --name myserver \
   --env YOUTUBE_URL=<Put the Youtube URL here> \
   --env YOUTUBE_KEY=<Put the Youtube Key here> \
-  --env FACEBOOK_URL=<Put the Facebook URL here> \
   --env FACEBOOK_KEY=<Put the Facebook Key here> \
   --env STREAMING_KEY=<Put the streaming key here> \
   --port 1935:1935 \
   mniak/multistreamer
 ```
 
-
 ### `YOUTUBE_URL`
 The youtube streaming URL
 
 ### `YOUTUBE_KEY`
 The youtube streaming key
-
-### `FACEBOOK_URL`
-The facebook streaming URL
 
 ### `FACEBOOK_KEY`
 The facebook streaming
