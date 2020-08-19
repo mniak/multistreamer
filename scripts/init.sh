@@ -1,4 +1,5 @@
-bash /scripts/vars.sh && \
-/auth-server/auth-server.bin && \
-stunnel && \
+bash /scripts/vars.sh
+stunnel
+
+/auth-server/auth-server.bin &
 nginx -g "daemon off;"
