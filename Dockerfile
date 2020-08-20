@@ -82,5 +82,4 @@ COPY scripts/ /scripts/
 COPY --from=tools-builder /app/app.bin /tools/tools.bin
 
 # ENV GIN_MODE=release
-
 CMD ["bash", "/scripts/init.sh"]

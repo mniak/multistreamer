@@ -79,6 +79,13 @@ var mkconfigSTunnelCmd = &cobra.Command{
 }
 
 func init() {
+	viper.BindEnv("STREAMING_PORT")
+	viper.BindEnv("STUNNEL_PORT")
+	viper.BindEnv("YOUTUBE_URL")
+	viper.BindEnv("YOUTUBE_KEY")
+	viper.BindEnv("FACEBOOK_URL")
+	viper.BindEnv("FACEBOOK_KEY")
+
 	rootCmd.AddCommand(mkconfigCmd)
 
 	// nginx
@@ -90,18 +97,21 @@ func init() {
 
 	viper.SetDefault("STREAMING_PORT", 1935)
 	mkconfigNginxCmd.Flags().Int("port", viper.GetInt("STREAMING_PORT"), "Streaming Port")
+	viper.SetDefault("STUNNEL_PORT", 1936)
+	mkconfigNginxCmd.Flags().Int("stunnel_port", viper.GetInt("STUNNEL_PORT"), "STunnel4 Port")
 
 	viper.SetDefault("YOUTUBE_URL", "rtmp://a.rtmp.youtube.com/live2")
 	mkconfigNginxCmd.Flags().String("youtube_url", viper.GetString("YOUTUBE_URL"), "YouTube URL")
 	if mkconfigNginxCmd.Flag("youtube_url").DefValue == "" {
 		mkconfigNginxCmd.MarkFlagRequired("youtube_url")
 	}
+
 	mkconfigNginxCmd.Flags().String("youtube_key", viper.GetString("YOUTUBE_KEY"), "YouTube Key")
 	if mkconfigNginxCmd.Flag("youtube_key").DefValue == "" {
 		mkconfigNginxCmd.MarkFlagRequired("youtube_key")
 	}
-	viper.SetDefault("STUNNEL_PORT", 1936)
-	mkconfigNginxCmd.Flags().Int("stunnel_port", viper.GetInt("STUNNEL_PORT"), "STunnel4 Port")
+
+	viper.BindEnv("FACEBOOK_KEY")
 	mkconfigNginxCmd.Flags().String("facebook_key", viper.GetString("FACEBOOK_KEY"), "Facebook Key")
 	if mkconfigNginxCmd.Flag("facebook_key").DefValue == "" {
 		mkconfigNginxCmd.MarkFlagRequired("facebook_key")

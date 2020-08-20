@@ -1,3 +1,4 @@
+env
 /tools/tools.bin mkconfig nginx -o /etc/nginx/nginx.conf
 stunnel
 
