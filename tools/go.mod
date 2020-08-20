@@ -1,4 +1,4 @@
-module github.com/mniak/multistreamer/auth-server
+module github.com/mniak/multistreamer/tools
 
 go 1.14
 

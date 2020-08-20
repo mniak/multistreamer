@@ -1,4 +1,4 @@
-FROM golang:latest as auth-server-builder
+FROM golang:latest as tools-builder
 
 WORKDIR /app
 
@@ -7,10 +7,10 @@ ENV GO111MODULE=on \
     GOOS=linux \
     GOARCH=amd64
 
-COPY auth-server/go.mod .
-COPY auth-server/go.sum .
+COPY tools/go.mod .
+COPY tools/go.sum .
 RUN go mod download
-COPY auth-server/. .
+COPY tools/. .
 RUN go build -o app.bin
 
 ## NGINX stage
@@ -80,7 +80,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY stunnel.conf /etc/stunnel/stunnel.conf
 
 COPY scripts/ /scripts/
-COPY --from=auth-server-builder /app/app.bin /auth-server/auth-server.bin
+COPY --from=tools-builder /app/app.bin /tools/tools.bin
 
 # ENV GIN_MODE=release
 
