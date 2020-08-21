@@ -76,7 +76,6 @@ EXPOSE 1935
 
 # Set up configuration
 RUN sed -i "s/ENABLED=.*/ENABLED=1/" /etc/default/stunnel4
-COPY stunnel.conf /etc/stunnel/stunnel.conf
 
 COPY scripts/ /scripts/
 COPY --from=tools-builder /app/app.bin /tools/tools.bin
