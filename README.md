@@ -34,3 +34,11 @@ Your own streaming key, the one that will authenticate you in this container.
 - [ ] Option to disable YouTube streaming
 - [ ] Option to disable Facebook streaming
 - [ ] Receive streaming keys on request, avoiding need to restart when the streaming key changes
+
+
+## Donations
+
+Did you find this project useful? Consider making a donation.
+
+[![Donate via PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K22SYGEXCS6Q)
+
