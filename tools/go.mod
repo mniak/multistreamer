@@ -1,6 +1,6 @@
 module github.com/mniak/multistreamer/tools
 
-go 1.14
+go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.6.3
